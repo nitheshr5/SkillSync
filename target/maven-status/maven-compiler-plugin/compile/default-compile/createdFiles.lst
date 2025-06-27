@@ -1,0 +1,8 @@
+com\skillsync\controller\JobApplicationController.class
+com\skillsync\repository\UserRepository.class
+com\skillsync\SkillSyncApplication.class
+com\skillsync\model\JobApplication.class
+com\skillsync\controller\HomeController.class
+com\skillsync\model\User.class
+com\skillsync\repository\JobApplicationRepository.class
+com\skillsync\controller\UserController.class
