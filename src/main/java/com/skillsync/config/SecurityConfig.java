@@ -34,10 +34,10 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/auth/**", "/").permitAll()
-            .anyRequest().authenticated()
-)
-
+                .requestMatchers("/", "/api/auth/**").permitAll() // ✅ allow register/login
+                .requestMatchers("/api/users/**", "/api/jobs/**").authenticated() // 🔒 JWT required
+                .anyRequest().permitAll() // allow other routes (like favicon or test)
+            )
             .exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(daoAuthenticationProvider())

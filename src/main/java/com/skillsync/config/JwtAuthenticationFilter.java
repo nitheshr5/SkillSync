@@ -33,9 +33,10 @@ protected void doFilterInternal(HttpServletRequest request,
                                 FilterChain filterChain)
                                 throws ServletException, IOException {
 
-    // Skip JWT validation for public endpoints
     String path = request.getRequestURI();
-    if (path.startsWith("/api/auth")) {
+
+    // ✅ Skip JWT check for /api/auth/** routes only (register, login)
+    if (path.matches("^/api/auth/(register|login)$")) {
         filterChain.doFilter(request, response);
         return;
     }

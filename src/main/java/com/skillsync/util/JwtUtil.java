@@ -15,7 +15,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "skillsyncsecretkey123456"; // keep this secure!
+    // 🔐 Secure key (at least 32 characters, base64-safe or plain string)
+    private final String SECRET_KEY = "b2J0NDg1ZjR2eXc3eXNnZ2RmZGhzdnNkcnRzZmprZHNsZmpz"; // 44-character base64 string
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -41,7 +42,6 @@ public class JwtUtil {
         return extractExpiration(token).before(new Date());
     }
 
-    /** ✅ Only ONE generateToken method - takes UserDetails */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userDetails.getUsername());
@@ -59,6 +59,6 @@ public class JwtUtil {
 
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
