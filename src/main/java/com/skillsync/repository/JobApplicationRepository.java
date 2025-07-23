@@ -9,3 +9,4 @@ import com.skillsync.model.JobApplication;
 public interface JobApplicationRepository extends JpaRepository<JobApplication, Long> {
     List<JobApplication> findByUserId(Long userId);
 }
+    
