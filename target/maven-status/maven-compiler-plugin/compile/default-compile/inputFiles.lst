@@ -1,8 +1,12 @@
 E:\skillsync\src\main\java\com\skillsync\controller\AuthController.java
+E:\skillsync\src\main\java\com\skillsync\controller\FileUploadController.java
+E:\skillsync\src\main\java\com\skillsync\model\FileUpload.java
+E:\skillsync\src\main\java\com\skillsync\repository\FileUploadRepository.java
 E:\skillsync\src\main\java\com\skillsync\controller\HomeController.java
 E:\skillsync\src\main\java\com\skillsync\repository\JobApplicationRepository.java
 E:\skillsync\src\main\java\com\skillsync\config\PasswordEncoderConfig.java
 E:\skillsync\src\main\java\com\skillsync\repository\UserRepository.java
+E:\skillsync\src\main\java\com\skillsync\service\FileUploadService.java
 E:\skillsync\src\main\java\com\skillsync\config\JwtAuthenticationFilter.java
 E:\skillsync\src\main\java\com\skillsync\service\AuthService.java
 E:\skillsync\src\main\java\com\skillsync\dto\AuthResponse.java

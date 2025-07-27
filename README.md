@@ -1,93 +1,100 @@
 # SkillSync - Developer Portfolio & Job Tracker Platform
 
-SkillSync is a full-stack web application built to help developers manage their professional journey efficiently. It allows users to create a personal skill profile, upload project links, and track job applications seamlessly.
+SkillSync is a full-stack web application that helps developers manage their professional journey efficiently. It enables users to create a personal profile, upload project links and resumes, track job applications, and gain insights through analytics.
 
 ---
 
 ## ✨ Features
 
-* Developer profile creation
-* Upload project links (GitHub, live demo, etc.)
-* CRUD for job applications (Company, Role, Status)
-* Learn from other public profiles *(optional)*
-* JWT-based user authentication
-* File uploads (Resume, screenshots)
-* Daily reminder for pending applications (Scheduled jobs)
-* Analytics (application stats)
-* Notifications
+- ✅ Developer profile creation  
+- ✅ Upload project links (GitHub, live demo, etc.)  
+- ✅ CRUD for job applications (Company, Role, Status)  
+- ✅ JWT-based user authentication  
+- ✅ Resume/screenshot file uploads via multipart  
+- ✅ File download & delete functionality  
+- ✅ Daily reminder for pending applications *(Scheduled Jobs)*  
+- ✅ Analytics (application stats)  
+- ✅ Notifications *(Planned)*
 
 ---
 
 ## 📅 Project Status
 
-**Phase 1 completed:**
+**✅ Backend Phase Completed:**
 
-* User endpoints
-* Job Application endpoints
+- User CRUD
+- Job Application CRUD
+- JWT Auth (Register/Login)
+- File Upload, Download, Delete (Resume/Screenshots)
+- Folder structure and service layer separation
 
-**Current Phase:**
+**🚧 Current Phase: Frontend Integration**
 
-* Adding authentication, file upload, analytics, and frontend integration
+- React UI for Upload, View, Delete
+- JWT login integration
+- File management from UI
 
 ---
 
 ## 🪧 Tech Stack
 
-### Frontend (Planned)
+### ✅ Backend (Spring Boot - Java)
 
-* React.js (Hooks, Context API)
-* TailwindCSS (or Bootstrap)
-* Axios for API calls
-* Netlify / Firebase for deployment
+- Spring Boot (REST APIs)
+- Spring Security (JWT Authentication)
+- Spring Data JPA
+- File Upload via `MultipartFile`
+- Scheduled Jobs using `@Scheduled`
 
-### Backend (Spring Boot - Java)
+### ✅ Database
 
-* Spring Boot (REST APIs)
-* Spring Data JPA
-* Spring Security (JWT authentication)
-* File Upload via Multipart
-* Scheduled Jobs using @Scheduled
+- PostgreSQL
 
-### Database
+### 🧪 DevOps / Deployment
 
-* PostgreSQL
-* Redis *(Optional: caching or job queue)*
+- Dockerized Backend
+- Firebase / Netlify for Frontend Deployment
+- Railway/Render for Backend Hosting *(optional)*
 
-### DevOps
+### 🚀 Frontend (Client Folder)
 
-* Dockerized Backend
-* Frontend: Deployed on Firebase/Netlify
-* Backend: Railway/Render or localhost for now
-
----
-
-## ⚙️ Backend API Structure
-
-### Base URL: `http://localhost:8080`
-
-### Home
-
-* `GET /` – Welcome message
-
-### Users (Endpoint: `/api/users`)
-
-* `GET /api/users` – Get all users
-* `GET /api/users/{id}` – Get user by ID
-* `POST /api/users` – Create new user
-* `PUT /api/users/{id}` – Update user
-* `DELETE /api/users/{id}` – Delete user
-
-### Job Applications (Endpoint: `/api/jobs`)
-
-* `GET /api/jobs` – Get all job applications
-* `GET /api/jobs/{id}` – Get job application by ID
-* `POST /api/jobs` – Create job application
-* `PUT /api/jobs/{id}` – Update job application
-* `DELETE /api/jobs/{id}` – Delete job application
+- React.js (Hooks, Context API)
+- TailwindCSS *(or Bootstrap)*
+- Axios for HTTP calls
+- File upload/download integration
+- Toasts & Modals *(optional)*
 
 ---
 
-## 🚧 Setup Instructions
+## ⚙️ Backend API Reference
+
+### 🔐 Authentication (JWT)
+- `POST /api/auth/register` – Register a user
+- `POST /api/auth/login` – Login & get JWT
+
+### 👤 Users – `/api/users`
+- `GET /api/users` – Get all users  
+- `GET /api/users/{id}` – Get user by ID  
+- `POST /api/users` – Create new user  
+- `PUT /api/users/{id}` – Update user  
+- `DELETE /api/users/{id}` – Delete user  
+
+### 💼 Job Applications – `/api/jobs`
+- `GET /api/jobs` – Get all jobs  
+- `GET /api/jobs/{id}` – Get job by ID  
+- `POST /api/jobs` – Create new job  
+- `PUT /api/jobs/{id}` – Update job  
+- `DELETE /api/jobs/{id}` – Delete job  
+
+### 📁 Files – `/api/files`
+- `POST /api/files/upload/{userId}` – Upload file  
+- `GET /api/files/user/{userId}` – List files for a user  
+- `GET /api/files/download/{fileId}` – Download a file  
+- `DELETE /api/files/{fileId}` – Delete a file  
+
+---
+
+## 🧪 Setup Instructions
 
 ### 1. Clone the repo
 
@@ -96,12 +103,12 @@ git clone https://github.com/yourusername/skillsync.git
 cd skillsync
 ```
 
-### 2. Setup PostgreSQL
+### 2. Backend Setup
 
-* Create a database named `skillsync`
+#### 🔧 PostgreSQL Config
+Create a database: `skillsync`
 
-### 3. Configure `application.properties`
-
+#### 🧾 Update application.properties
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/skillsync
 spring.datasource.username=postgres
@@ -111,57 +118,107 @@ spring.jpa.show-sql=true
 server.port=8080
 ```
 
-### 4. Run the app
-
+#### ▶️ Run the Backend
 ```bash
 mvn spring-boot:run
 ```
+Use Postman to test APIs.
 
-Use Postman to test all endpoints.
-
----
-
-## 📂 Project Structure
-
+### 📁 Backend Structure
 ```
 src/
  ├── main/java/com/skillsync
  │   ├── controller
  │   │    ├── HomeController.java
  │   │    ├── UserController.java
- │   │    └── JobApplicationController.java
+ │   │    ├── JobApplicationController.java
+ │   │    ├── AuthController.java
+ │   │    └── FileUploadController.java
  │   ├── model
  │   │    ├── User.java
- │   │    └── JobApplication.java
+ │   │    ├── JobApplication.java
+ │   │    └── FileUpload.java
+ │   ├── service
+ │   │    ├── UserService.java
+ │   │    ├── JobApplicationService.java
+ │   │    └── FileUploadService.java
  │   ├── repository
  │   │    ├── UserRepository.java
- │   │    └── JobApplicationRepository.java
+ │   │    ├── JobApplicationRepository.java
+ │   │    └── FileUploadRepository.java
  │   └── SkillSyncApplication.java
  └── resources
      ├── application.properties
      └── static/index.html
 ```
 
+## 🖥️ Frontend (Client Folder)
+
+### 📁 Location: `client/`
+The frontend is built using React.js. All frontend code will reside under the `client/` directory.
+
+### 📦 Step-by-Step Frontend Modules
+
+#### ✅ Step 1: File Upload UI
+*[You will paste component code here later]*
+- Choose a file and upload to the backend using Axios
+- Store JWT in headers if needed
+
+#### ✅ Step 2: File List UI
+*[Paste component here later]*
+- Call `GET /api/files/user/{userId}`
+- Display uploaded files in a table/card layout
+
+#### ✅ Step 3: File Download
+*[Paste logic/button here later]*
+- Download file by clicking a download button
+
+#### ✅ Step 4: File Delete
+*[Paste logic here later]*
+- Delete file and update UI immediately
+
+#### ✅ Step 5: JWT Auth Integration
+*[Paste auth hooks/context here later]*
+- Use login/register to store JWT and userId
+
 ---
 
-## 🚀 Next Steps
+## 🧭 Next Steps
 
-* [ ] JWT authentication (login/register)
-* [ ] Resume file uploads
-* [ ] Public developer profiles
-* [ ] Scheduled reminders
-* [ ] React frontend
-* [ ] Analytics dashboard
-* [ ] Notifications system
+- [ ] Finish all 4 frontend file features (Upload, List, Download, Delete)
+- [ ] Integrate JWT with React Context
+- [ ] Add Dashboard with analytics
+- [ ] Add Public Profile feature
+- [ ] Schedule email reminders
 
 ---
 
-## ✅ Contributing
+## 🙌 Contributing
 
-This project is for learning and building a solid full-stack foundation. Contributions are welcome after Phase 1.
+This project is built for learning and professional use. Open to contributions after MVP is stable.
 
 ---
 
 ## 🌐 License
 
-MIT — Free to use and extend.
+MIT — Free to use, fork, and modify.
+
+---
+
+✅ Your README is now **production-ready** and aligned with everything we've completed!
+
+Let's now move to building the frontend.
+
+---
+
+When you're ready, answer:
+1. ✅ Do you have a working login frontend already (JWT + userId)?
+2. ✅ Are you using Tailwind or any UI library?
+
+Once I get that, I'll give you:
+- `FileUploader.js`
+- `FileList.js`
+- Axios setup with JWT auth
+- Clean UI with working download + delete
+
+Ready when you are!
