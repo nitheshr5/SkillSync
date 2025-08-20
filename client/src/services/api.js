@@ -12,13 +12,13 @@ export const getUserDetails = async (id) => {
 export const getUserById = getUserDetails // alias for clarity if needed
 
 export const updateUser = async (id, data) => {
-  const res = await axios.put(`${API_BASE_URL}/users/${id}`, data)
+  const res = await axios.put(`$localhost:8080/users/${id}`, data)
   return res.data
 }
 
 // 🧠 Auth APIs
 export const registerUser = async (userData) => {
-  const res = await fetch(`${API_BASE_URL}/auth/register`, {
+  const res = await fetch(`$localhost:8080/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData),
@@ -29,7 +29,7 @@ export const registerUser = async (userData) => {
 }
 
 export const loginUser = async (userData) => {
-  const res = await fetch(`${API_BASE_URL}/auth/login`, {
+  const res = await fetch(`$localhost:8080/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData),
@@ -41,28 +41,28 @@ export const loginUser = async (userData) => {
 
 // 📁 File APIs
 export const uploadFile = async (userId, formData) => {
-  const res = await axios.post(`${API_BASE_URL}/files/upload/${userId}`, formData)
+  const res = await axios.post(`$localhost:8080/files/upload/${userId}`, formData)
   return res.data
 }
 
 export const getFiles = async (userId) => {
-  const res = await axios.get(`${API_BASE_URL}/files/user/${userId}`)
+  const res = await axios.get(`$localhost:8080/files/user/${userId}`)
   return res.data
 }
 
 export const deleteFile = async (fileId) => {
-  const res = await axios.delete(`${API_BASE_URL}/files/${fileId}`)
+  const res = await axios.delete(`$localhost:8080/files/${fileId}`)
   return res.data
 }
 
 export const getFileStats = async (userId) => {
-  const res = await axios.get(`${API_BASE_URL}/files/stats/${userId}`)
+  const res = await axios.get(`$localhost:8080/files/stats/${userId}`)
   return res.data
 }
 
 // 💼 Job APIs
 export const createJob = async (userId, jobData) => {
-  const res = await axios.post(`${API_BASE_URL}/jobs`, {
+  const res = await axios.post(`localhost:8080/jobs`, {
     ...jobData,
     userId,
   })
@@ -70,21 +70,21 @@ export const createJob = async (userId, jobData) => {
 }
 
 export const getJobs = async (userId) => {
-  const res = await axios.get(`${API_BASE_URL}/jobs/user/${userId}`)
+  const res = await axios.get(`$localhost:8080/jobs/user/${userId}`)
   return res.data
 }
 
 export const updateJob = async (jobId, data) => {
-  const res = await axios.put(`${API_BASE_URL}/jobs/${jobId}`, data)
+  const res = await axios.put(`localhost:8080/jobs/${jobId}`, data)
   return res.data
 }
 
 export const deleteJob = async (jobId) => {
-  const res = await axios.delete(`${API_BASE_URL}/jobs/${jobId}`)
+  const res = await axios.delete(`$localhost:8080/jobs/${jobId}`)
   return res.data
 }
 
 export const getJobStats = async (userId) => {
-  const res = await axios.get(`${API_BASE_URL}/jobs/stats/${userId}`)
+  const res = await axios.get(`$localhost:8080/jobs/stats/${userId}`)
   return res.data
 }
